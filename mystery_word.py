@@ -43,11 +43,24 @@ def choose_random_word(final_word_bank):
     return random.choice(final_word_bank)
 
 
+def guessing_slots(word_to_guess):
+    mystery_word = []
+    for spot in word_to_guess:
+        mystery_word.append(" _ ")
+    return mystery_word
+
+
 def test_print():
+    """ for testing code
+    """
     test = word_bank()
     difficulty = difficulty_word_bank(test)
-    for _ in difficulty:
-        print(_)
+    # for _ in difficulty:
+    #     print(_)
+    m = choose_random_word(difficulty)
+    snail = guessing_slots(m)
+    print(m)
+    print(snail)
 
 
 test_print()
