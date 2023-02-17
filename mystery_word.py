@@ -50,21 +50,38 @@ def guessing_slots(word_to_guess):
     return mystery_word
 
 
-def test_print():
-    """ for testing code
+def main_game(computer_chosen_word, mystery_word_slots):
+    """ main flow of the game
     """
-    test = word_bank()
-    difficulty = difficulty_word_bank(test)
-    # for _ in difficulty:
-    #     print(_)
-    m = choose_random_word(difficulty)
-    snail = guessing_slots(m)
-    print(m)
-    print(snail)
+    turn = 2
+    while turn > 0:
+        guess = input("Please choose a letter or EXIT: ").lower()
+        if guess in computer_chosen_word:
+            for count, value in enumerate(computer_chosen_word):
+                if guess == value:
+                    mystery_word_slots[count] = guess
+        elif guess == "exit":
+            break
+        else:
+            turn -= 1
+            print("Letter not in the word, please try again.")
+        print(mystery_word_slots)
 
 
-test_print()
+def play_game():
+    """ contains combined functions to run the game
+    """
+    entire_word_bank = word_bank()
+    word_bank_for_chosen_difficulty = difficulty_word_bank(entire_word_bank)
+    computer_chosen_word = choose_random_word(word_bank_for_chosen_difficulty)
+    mystery_word_slots = guessing_slots(computer_chosen_word)
 
-# def play_game():
-# if __name__ == "__main__":
-#     play_game()
+    print(computer_chosen_word)
+    print()
+    print(mystery_word_slots)
+    print()
+    main_game(computer_chosen_word, mystery_word_slots)
+
+
+if __name__ == "__main__":
+    play_game()
