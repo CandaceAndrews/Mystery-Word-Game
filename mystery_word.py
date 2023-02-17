@@ -24,9 +24,17 @@ def difficulty_word_bank(word_bank):
         for word in word_bank:
             if len(word) >= 4 and len(word) <= 6:
                 diff_word_bank.append(word)
-    return diff_word_bank
     # Normal Mode 6 - 8 letter words
+    elif difficulty_setting == "normal":
+        for word in word_bank:
+            if len(word) >= 6 and len(word) <= 8:
+                diff_word_bank.append(word)
     # Hard Mode 8+ letter words
+    elif difficulty_setting == "hard":
+        for word in word_bank:
+            if len(word) >= 8:
+                diff_word_bank.append(word)
+    return diff_word_bank
 
 
 def choose_random_word(final_word_bank):
@@ -37,13 +45,12 @@ def choose_random_word(final_word_bank):
 
 def test_print():
     test = word_bank()
-    easy = difficulty_word_bank(test)
-    for _ in easy:
+    difficulty = difficulty_word_bank(test)
+    for _ in difficulty:
         print(_)
 
 
 test_print()
-
 
 # def play_game():
 # if __name__ == "__main__":
