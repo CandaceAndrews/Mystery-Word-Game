@@ -46,16 +46,19 @@ def choose_random_word(final_word_bank):
 def guessing_slots(word_to_guess):
     mystery_word = []
     for spot in word_to_guess:
-        mystery_word.append(" _ ")
+        mystery_word.append("_")
     return mystery_word
 
 
 def main_game(computer_chosen_word, mystery_word_slots):
     """ main flow of the game
     """
-    turn = 2
-    while turn > 0:
+    turn = 3
+    used_letters = []
+
+    while turn > 0 and "_" in mystery_word_slots:
         guess = input("Please choose a letter or EXIT: ").lower()
+        used_letters.append(guess)
         if guess in computer_chosen_word:
             for count, value in enumerate(computer_chosen_word):
                 if guess == value:
@@ -64,7 +67,11 @@ def main_game(computer_chosen_word, mystery_word_slots):
             break
         else:
             turn -= 1
+            print()
             print("Letter not in the word, please try again.")
+        print(f"Turn: {turn}")
+        print(f"Used Letters: {used_letters}")
+        print()
         print(mystery_word_slots)
 
 
