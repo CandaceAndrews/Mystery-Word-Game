@@ -1,0 +1,19 @@
+1. Open file, read it, make it into a list of words. Words in the file are separated by newlines.
+
+2. Select a random word
+
+3. Show number of letters in word, as underscores
+
+4. Ask user to guess
+    - keep a count of wrong guesses and the actual wrong letters that were guessed
+        - if the guess is wrong, tell the user that it's wrong
+    - keep track of the correct letter guesses
+        - If a guess is correct, display it like this ✅
+        B _ _ B A _ D
+    - if the letter has already been guessed, tell the user, and don't take away a guess
+5. Repeat step 4 until user reaches 8 guesses or they guess all the letters in the word correctly
+    - If user reaches 8 wrong guesses, break and tell them they are out of guesses
+        and reveal the word
+    - If the user guesses the word, tell them they are right and reveal the word
+
+6. Ask if they want to play again. If so, go back to step 2. 
