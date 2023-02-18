@@ -1,5 +1,7 @@
 import random
 
+# convert final result into string for display and restore the altered version in variable since strings are immutable
+
 
 def word_bank():
     """ entire word bank
@@ -50,44 +52,62 @@ def guessing_slots(word_to_guess):
     return mystery_word
 
 
-def main_game(computer_chosen_word, mystery_word_slots):
+def guess_not_in_used_letters(used_letters, guess, computer_chosen_word, mystery_word_slots, turn):
+    used_letters.append(guess)
+    if guess in computer_chosen_word:
+        for count, value in enumerate(computer_chosen_word):
+            if guess == value:
+                mystery_word_slots[count] = guess
+            elif guess == "exit":
+                break
+            else:
+                turn -= 1
+            print(f"Turn:  {turn}")
+            print(f"Letters Guessed:  {used_letters}")
+            print(mystery_word_slots)
+
+
+def store_guessed_letters(turn, computer_chosen_word, mystery_word_slots):
     """ main flow of the game
     """
-    turn = 3
     used_letters = []
-
     while turn > 0 and "_" in mystery_word_slots:
-        guess = input("Please choose a letter or EXIT: ").lower()
-        used_letters.append(guess)
-        if guess in computer_chosen_word:
-            for count, value in enumerate(computer_chosen_word):
-                if guess == value:
-                    mystery_word_slots[count] = guess
-        elif guess == "exit":
-            break
+        guess = input("Please choose a letter or EXIT:   ").lower()
+        if guess not in used_letters:
+            guess_not_in_used_letters(
+                used_letters, guess, computer_chosen_word, mystery_word_slots, turn)
         else:
-            turn -= 1
-            print()
-            print("Letter not in the word, please try again.")
-        print(f"Turn: {turn}")
-        print(f"Used Letters: {used_letters}")
+            print("You have already used that letter!")
+            print(f"Turn:  {turn}")
+            print(f"Letters Guessed:  {used_letters}")
+            print(mystery_word_slots)
+
+
+def lose_game(turn, computer_chosen_word, ):
+    while turn == 0:
         print()
-        print(mystery_word_slots)
+        print(f"The word was:  {computer_chosen_word}")
+        print()
+    play_again = input("Play again? |YES or NO|   ").lower()
+    if play_again == "yes":
+        play_game()
+    else:
+        pass
 
 
 def play_game():
     """ contains combined functions to run the game
     """
+    turn = 3
     entire_word_bank = word_bank()
     word_bank_for_chosen_difficulty = difficulty_word_bank(entire_word_bank)
     computer_chosen_word = choose_random_word(word_bank_for_chosen_difficulty)
     mystery_word_slots = guessing_slots(computer_chosen_word)
 
+    print(f"Turn:  {turn}")
     print(computer_chosen_word)
-    print()
     print(mystery_word_slots)
-    print()
-    main_game(computer_chosen_word, mystery_word_slots)
+    store_guessed_letters(turn, computer_chosen_word, mystery_word_slots)
 
 
 if __name__ == "__main__":
