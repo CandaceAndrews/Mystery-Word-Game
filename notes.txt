@@ -17,3 +17,6 @@
     - If the user guesses the word, tell them they are right and reveal the word
 
 6. Ask if they want to play again. If so, go back to step 2. 
+
+    
+    
