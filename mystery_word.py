@@ -72,6 +72,7 @@ def store_guessed_letters(turn, computer_chosen_word, mystery_word_slots, word_b
                     else:
                         turn -= 1
                     print("_________________________________")
+                    print("Wrong guess!")
                     print(computer_chosen_word)
                     print(f"Turn:  |{turn}|")
                     print(f"Letters Guessed:  {used_letters}")
@@ -94,23 +95,17 @@ def store_guessed_letters(turn, computer_chosen_word, mystery_word_slots, word_b
                 play_game()
             else:
                 game_running = False
+                break
         else:
             print("_________________________________")
             print(f"You lose! The word was {computer_chosen_word}")
             # Play again section ----
             play_again = input("Play again? |YES or NO|  ").lower()
             if play_again == "yes":
-                turn = 8
-                computer_chosen_word = choose_random_word(
-                    word_bank_for_chosen_difficulty)
-                mystery_word_slots = guessing_slots(computer_chosen_word)
-                used_letters = []
-                print("_________________________________")
-                print(f"Turn:  |{turn}|")
-                print(computer_chosen_word)
-                print(' '.join(mystery_word_slots))
+                play_game()
             else:
                 game_running = False
+                break
 
 
 def play_game():
