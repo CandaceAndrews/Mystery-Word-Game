@@ -73,7 +73,7 @@ def store_guessed_letters(turn, computer_chosen_word, mystery_word_slots, word_b
                         turn -= 1
                     print("_________________________________")
                     print("Wrong guess!")
-                    print(computer_chosen_word)
+                    # print(computer_chosen_word)
                     print(f"Turn:  |{turn}|")
                     print(f"Letters Guessed:  {used_letters}")
                     print()
@@ -81,7 +81,7 @@ def store_guessed_letters(turn, computer_chosen_word, mystery_word_slots, word_b
                 else:
                     print("_________________________________")
                     print(f"You've already guessed {guess}")
-                    print(computer_chosen_word)
+                    # print(computer_chosen_word)
                     print(f"Turn:  |{turn}|")
                     print(f"Letters Guessed:  {used_letters}")
                     print()
@@ -119,7 +119,7 @@ def play_game():
 
     # Print for 1st Round
     print(f"Turn:  |{turn}|")
-    print(computer_chosen_word)
+    # print(computer_chosen_word)
     print()
     print(' '.join(mystery_word_slots))
 
